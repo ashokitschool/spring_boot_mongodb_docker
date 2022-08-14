@@ -29,7 +29,7 @@ public class UserResource {
         this.userRepository = userRepository;
     }
 
-    @GetMapping(produces = "application/json")
+    @GetMapping(value="/", produces = "application/json")
     public List<User> getAllUsers() {
     	List<User> users = (List<User>) userRepository.findAll();
     	logger.info("Get Users Total Users: "+users.size());
