@@ -29,14 +29,14 @@ public class UserResource {
         this.userRepository = userRepository;
     }
 
-    @GetMapping(produces = "application/JSON")
+    @GetMapping(produces = "application/json")
     public List<User> getAllUsers() {
     	List<User> users = (List<User>) userRepository.findAll();
     	logger.info("Get Users Total Users: "+users.size());
         return users;
     }
 
-    @GetMapping(value = "/{id}", produces = "application/JSON")
+    @GetMapping(value = "/{id}", produces = "application/json")
     public Optional<User> findById(@PathVariable("id") String userID) {
     	logger.info("Get User By Id : "+userID);
         return userRepository.findById(userID);
