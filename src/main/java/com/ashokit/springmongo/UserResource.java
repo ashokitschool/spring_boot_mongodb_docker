@@ -20,25 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/users")
 public class UserResource {
 
-    private final UserRepository userRepository;
+	private final UserRepository userRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(UserRepository.class);
-    
-    @Autowired
-    public UserResource(final UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	private static final Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
-    @GetMapping(value="/", produces = "application/json")
-    public List<User> getAllUsers() {
-    	List<User> users = (List<User>) userRepository.findAll();
-    	logger.info("Get Users Total Users: "+users.size());
-        return users;
-    }
+	@Autowired
+	public UserResource(final UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
-    @GetMapping(value = "/{id}", produces = "application/json")
-    public Optional<User> findById(@PathVariable("id") String userID) {
-    	logger.info("Get User By Id : "+userID);
-        return userRepository.findById(userID);
-    }
+	@GetMapping(produces = "application/json")
+	public List<User> getAllUsers() {
+		List<User> users = (List<User>) userRepository.findAll();
+		logger.info("Get Users Total Users: " + users.size());
+		return users;
+	}
+
+	@GetMapping(value = "/{id}", produces = "application/json")
+	public Optional<User> findById(@PathVariable("id") String userID) {
+		logger.info("Get User By Id : " + userID);
+		return userRepository.findById(userID);
+	}
 }
